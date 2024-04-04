@@ -56,41 +56,52 @@ Full Subtractor:
 
 **Program**:
 
-/* Program to design a half subtractor and full subtractor circuit and verify its truth table in quartus using Verilog programming. Developed by: RegisterNumber:
-212223230111*/
+/* Program to design a half subtractor and full subtractor circuit and verify its truth table in quartus using Verilog programming.
+Developed by:A.Lahari
+RegisterNumber:212223230111
+Full Adder
 ```
-//full adder
-module Fulladd(sum,cout,a,b,cin);
-   output sum;
-	output cout;
-	input a;
-	input b;
-	input cin;
-	
-	      //Internal nets
- wire sl,cl,c2;
+module fulladd_top(a,b,cin,sum,carry);
+input a,b,cin;
+output sum,carry;
+wire w1,w2,w3,w4;       
+xor(w1,a,b);
+xor(sum,w1,cin);        
+and(w2,a,b);
+and(w3,b,cin);
+and(w4,cin,a);
+or(carry,w2,w3,w4);
+endmodule
 
-  //Instantiate logic gate primitives
- xor(sl,a,b);
- and(cl,a,b);
- xor(sum,sl,cin);
- and(c2,sl,cin);
- or(cout,c2,cl);
- 
- endmodule+
 ```
 
-![Screenshot 2024-04-01 091954](https://github.com/AnnaLahari/FULL_ADDER_SUBTRACTOR/assets/149365425/b00fa313-bc9f-4919-bf83-a5acba2482f5)
+Full subractor
 
+```
+module fullsub_top(a,b,Bin,BO,DIFF);
+input a,b,Bin;
+output BO,DIFF;
+assign DIFF = a ^ b ^ Bin;
+assign BO = (a & b) | ((a ^ b) & Bin);
+endmodule
+
+```
+*/
 
 **RTL Schematic**:
 
-![Screenshot 2024-04-01 092027](https://github.com/AnnaLahari/FULL_ADDER_SUBTRACTOR/assets/149365425/2adc8f73-1aa5-4a5e-8554-8061ff15f92e)
+![image](https://github.com/Moonesh0805/FULL_ADDER_SUBTRACTOR/assets/138849189/bf92a40f-3ed0-4562-98a4-761a35217b6a)
 
 
 **Output/Timing Waveform**:
 
-![output 2024-03-18 at 14 23 24_d4fdec91](https://github.com/Hashwatha/FULL_ADDER_SUBTRACTOR/assets/150231431/78831e18-109c-4754-94e8-f3913fc8ec95)
+Full adder
+
+![image](https://github.com/Moonesh0805/FULL_ADDER_SUBTRACTOR/assets/138849189/992c0697-54f7-4279-81e0-2176008bc3f5)
+
+Full subractor
+
+![image](https://github.com/Moonesh0805/FULL_ADDER_SUBTRACTOR/assets/138849189/0ab10f7f-583e-4d10-9b47-f71f838a6a9d)
 
 
 **Result**:
